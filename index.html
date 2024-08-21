@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base target="_top">
+    <title>Robot Report!</title>
+</head>
+
+<body>
+    <script>
+        const queryString = decodeURIComponent(window.location.search).replace("?liff.state=", "");
+        const params = new URLSearchParams(queryString);
+        const robotName = params.get('r');
+
+        // Define the base URL
+        let iframeSrc = "https://script.google.com/macros/s/AKfycbwn9lo8GtQ7eRQTzOV4HG-bePPpkBKldVyP-0plaNY0u_KyGn_jeexk-PtIW7IP_3hNwQ/exec";
+
+        // Append robotName to iframeSrc if robotName is not null
+        if (robotName !== null) {
+            iframeSrc += `?r=${robotName}`;
+        }
+        console.log(iframeSrc);
+        // Create the iframe element
+        const iframe = document.createElement('iframe');
+        iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;';
+        iframe.src = iframeSrc;
+
+        // Append the iframe to the body
+        document.body.appendChild(iframe);
+    </script>
+</body>
+
+</html>
